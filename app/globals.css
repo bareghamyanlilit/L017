@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "ArmMassis";
+  src: url("../fonts/HFMassisShantNUnicode.ttf");
+}
+
+.FontMassis {
+  font-family: "ArmMassis";
+}
+
+.body {
+  font-family: "ArmMassis";
+}
+.text-vrayi {
+  color: #2d2d2d;
+}
+
+.text-hetevi {
+  color: #79797911;
+}
+.bg-guyn {
+  background-color: #2d2d2d;
+}
