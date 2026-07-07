@@ -9,6 +9,17 @@
   font-family: "ArmMassis";
 }
 
+@font-face {
+  font-family:"SHK_Dzeragir" ;
+  src: url('../fonts/SHK_Dzeragir.woff2');
+}
+
+
+.FontSHK_Dzeragir{
+  font-family: "SHK_Dzeragir";
+  
+}
+
 .body {
   font-family: "ArmMassis";
 }
@@ -20,5 +31,9 @@
   color: #79797911;
 }
 .bg-guyn {
+  background-color: #fffefa;
+}
+.bg-bg {
   background-color: #2d2d2d;
 }
+

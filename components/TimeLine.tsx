@@ -1,6 +1,6 @@
 "use client";
 
-import { anim, program } from "@/data/data";
+import { anim, program, text } from "@/data/data";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from "react";
 export default function Timeline() {
   const [progress, setProgress] = useState(0);
   const [height, setHeight] = useState(2000);
-  const [heartOpacity, setHeartOpacity] = useState(0);
 
   const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -48,25 +47,6 @@ export default function Timeline() {
         1
       );
       setProgress(progress);
-      let opacity = 1;
-
-      // Fade In (0 → 200px)
-      if (window.scrollY < 200) {
-        opacity = window.scrollY / 200;
-      }
-
-      // Fade Out (վերջին 50px)
-      const maxScroll =
-        document.documentElement.scrollHeight -
-        window.innerHeight;
-
-      if (window.scrollY > maxScroll - 50) {
-        opacity = (maxScroll - window.scrollY) / 50;
-      }
-
-      opacity = Math.max(0, Math.min(opacity, 1));
-
-      setHeartOpacity(opacity);
     };
 
     handleScroll();
@@ -79,7 +59,7 @@ export default function Timeline() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden py-5">
 
       {/* SVG PATH */}
       <svg
@@ -119,7 +99,6 @@ export default function Timeline() {
       {/* HEART */}
       <Heart
         progress={progress}
-        opacity={heartOpacity}
       />
 
       {/* CONTENT */}
@@ -127,24 +106,22 @@ export default function Timeline() {
         ref={timelineRef}
         className="relative z-10 FontArTarumianBarakU py-5 tracking-[25%]"
       >
-        <motion.h3
-          {...anim}
-          className="relative text-2xl font-bold mb-10 text-center"
-        >
-          ժԱՄԱՆԱԿԱՑՈՒՅՑ
 
-          <p className="absolute -z-1 text-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#5800001A]">
-            ժԱՄԱՆԱԿԱՑՈՒՅՑ
-          </p>
-        </motion.h3>
-        <div className="mx-auto w-max text-center text-3xl  mb-20">
-          <h1 className="mb-10">Հունիս</h1>
-          <div className="flex gap-10">
-            <span>5</span>
+        <div className=" relative z-20 mx-auto w-max text-center text-4xl  mb-20">
+          <Image
+            src="/svg (1).png"
+            alt=""
+            width={1000}
+            height={1000}
+            className="w-full mx-auto mb-10 "
+          />
+          <h1 className=" text-3xl  mt-5 mb-9">{text.days[0]}</h1>
+          <div className="flex gap-4">
+            <span className="ml-2">{text.days[1]}</span>
             <span></span>
-            <span className="ml-10">5</span>
-            <span>5</span>
-            </div>
+            <span className="mx-1 ml-12">{text.days[3]}</span>
+            <span>{text.days[4]}</span>
+          </div>
         </div>
 
         <div className="flex flex-col gap-24">
@@ -160,7 +137,7 @@ export default function Timeline() {
                     ? `https://www.google.com/maps/search/${el.address}`
                     : "#"
                 }
-                className={`px-7 ${i % 2 === 0
+                className={`px-3 ${i % 2 === 0
                   ? "text-start"
                   : "text-end"
                   }`}
@@ -174,7 +151,7 @@ export default function Timeline() {
 
                 <motion.p
                   {...anim}
-                  className="text-2xl font-bold my-2"
+                  className="text-2xl  my-2"
                 >
                   {el.title}
                 </motion.p>
@@ -200,39 +177,51 @@ export default function Timeline() {
             </div>
           ))}
         </div>
+
+        <div className="w-full h-60 absolute -top-20  bg-guyn"></div>
+
       </div>
     </section>
   );
 }
+
 function Heart({
   progress,
-  opacity,
 }: {
   progress: number;
-  opacity: number;
 }) {
   const [position, setPosition] = useState({
-    x: 125,
-    y: 140,
+    x: 99.5892,
+    y: 210, // սկզբնական դիրք
   });
-  const scale = 0.7 + opacity * 0.3;
+
+  const scale = 1;
+
   useEffect(() => {
+    if (progress <= 0) {
+      setPosition({
+        x: 99.5892,
+        y: 210,
+      });
+      return;
+    }
+
     const path = document.getElementById(
       "timeline-path"
-    ) as SVGPathElement | null;
+    ) as any;
 
     if (!path) return;
 
     const length = path.getTotalLength();
 
-   const START_OFFSET = 0.2; // 8%
+    const START_OFFSET = 0.2;
 
-const point = path.getPointAtLength(
-  Math.min(
-    length * (START_OFFSET + progress * (1 - START_OFFSET)),
-    length
-  )
-);
+    const point = path.getPointAtLength(
+      Math.min(
+        length * (START_OFFSET + progress * (1 - START_OFFSET)),
+        length
+      )
+    );
 
     setPosition({
       x: point.x,
@@ -240,27 +229,26 @@ const point = path.getPointAtLength(
     });
   }, [progress]);
 
-  return (<div
-    className="absolute z-50"
-    style={{
-      left: `calc(50% + ${position.x - 125}px)`,
-      top: position.y,
-      opacity,
-      transform: `translate(-50%, -50%) scale(${scale})`,
-      transition: "opacity 0.15s linear",
-    }}
-  >
-    <div className="relative w-14 h-14">
-      <Image
-        src="/icon1.png"
-        alt="heart"
-        fill
-      />
+  return (
+    <div
+      className="absolute z-50"
+      style={{
+        left: `calc(50% + ${position.x - 125}px)`,
+        top: position.y,
+        transform: `translate(-50%, -50%) scale(${scale})`,
+      }}
+    >
+      <div className="relative w-14 h-14">
+        <Image
+          src="/icon1.png"
+          alt="heart"
+          fill
+        />
 
-      <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
-        06
-      </span>
+        <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
+          {text.days[2]}
+        </span>
+      </div>
     </div>
-  </div>
   );
 }

@@ -152,7 +152,7 @@ export default function AttendanceGuests() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-3xl p-6 mt-20">
+    <div className="mx-auto w-full max-w-3xl px-6  ">
       <motion.h1
         {...anim}
         className="text-3xl font-bold text-vrayi text-center mb-20 tracking-widest"
@@ -286,7 +286,7 @@ export default function AttendanceGuests() {
           {...anim}
           type="submit"
           disabled={isSubmitting}
-          className="w-full p-3 bg-guyn text-[#FFFDFB] rounded-lg"
+          className="w-full p-3 bg-bg text-[#FFFDFB] rounded-lg"
         >
           {isSubmitting ? "Ուղարկվում է..." : "Ուղարկել"}
         </motion.button>

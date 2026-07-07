@@ -1,8 +1,8 @@
-import { anim } from "@/data/data";
+import { anim, text } from "@/data/data";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const weddingDate: any = new Date("2026-09-14T12:00:00");
+const weddingDate: any = text.time; 
 
 export function TimeBox() {
   const [timeLeft, setTimeLeft] : any= useState({
@@ -41,7 +41,7 @@ export function TimeBox() {
     return () => clearInterval(timer);
   }, []);
   return (
-     <motion.section {...anim}  className=" my-5 FontMassis text-center  text-vrayi">
+     <motion.section {...anim}  className=" my-5  text-center  text-vrayi">
 
       <div className="">
         {timeLeft.finished ? (
@@ -49,7 +49,7 @@ export function TimeBox() {
             Հարսանիքն արդեն սկսվել է 
           </div>
         ) : (
-          <div className="flex items-center justify-center FontMassis  ">
+          <div className="flex items-center justify-center   ">
             <TimeBoxItem label="Օր" value={timeLeft.days} /> <span className="w-12 rotate-90 h-px  bg-[#2D2D2D]"></span>
             <TimeBoxItem label="Ժամ" value={timeLeft.hours} /> <span className="w-12 rotate-90 h-px  bg-[#2D2D2D]"></span>
             <TimeBoxItem label="Րոպե" value={timeLeft.minutes} /> <span className="w-12 rotate-90 h-px  bg-[#2D2D2D]"></span>
@@ -63,7 +63,7 @@ export function TimeBox() {
 
 const TimeBoxItem = ({ label, value }: any) => (
   <div className=" text-4xl px-1 text-center ">
-    <h2 className="mt-1 FontMassis">{value}</h2>
-    <p className="FontMassis text-xl">{label}</p>
+    <h2 className="mt-1 ">{value}</h2>
+    <p className=" text-xl">{label}</p>
   </div>
 );
