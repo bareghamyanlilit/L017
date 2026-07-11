@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <div
-      className={`${openEnvelope ? "" : "relative h-screen"} tracking-wide bg-guyn FontSHK_Dzeragir max-w-xl overflow-hidden m-auto  `}
+      className={`${openEnvelope ? "" : "relative h-dvh"} tracking-wide bg-guyn FontSHK_Dzeragir max-w-xl overflow-hidden m-auto  `}
     >
       <div
         onClick={() => setOpenEnvelope(true)}
