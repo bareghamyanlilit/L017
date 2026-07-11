@@ -41,11 +41,11 @@ export function TimeBox() {
     return () => clearInterval(timer);
   }, []);
   return (
-     <motion.section {...anim}  className=" my-5  text-center  text-vrayi">
+     <motion.section {...anim}  className=" w-full  my-5  text-center  text-vrayi">
 
       <div className="">
         {timeLeft.finished ? (
-          <div className="text-white text-2xl font-semibold px-4  rounded-xl ">
+          <div className=" text-2xl font-semibold px-4  rounded-xl ">
             Հարսանիքն արդեն սկսվել է 
           </div>
         ) : (

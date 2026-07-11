@@ -24,16 +24,80 @@
   font-family: "ArmMassis";
 }
 .text-vrayi {
-  color: #2d2d2d;
+  color: #241100;
 }
 
 .text-hetevi {
-  color: #79797911;
+  color: #2411006c;
 }
 .bg-guyn {
-  background-color: #fffefa;
+  background-color: #ffffff;
 }
 .bg-bg {
-  background-color: #2d2d2d;
+  background-color: #241100;
 }
 
+
+
+/* ....................CRAR................ */
+
+
+
+@media (min-width: 768px) {
+  @keyframes bounceYB {
+    0% {
+      top: 10%;
+    }
+    100% {
+      top: -100%;
+      display: none;
+    }
+  }
+
+  .animate-bounceYB {
+    animation: bounceYB 2s ease forwards;
+  }
+
+  @keyframes bounceYT {
+    0% {
+      bottom: -60%;
+    }
+    100% {
+      bottom:-180%;
+      display: none;
+    }
+  }
+
+  .animate-bounceYT {
+    animation: bounceYT 2s ease forwards;
+  }
+}
+@media (max-width: 768px) {
+  @keyframes bounceYB {
+    0% {
+      top: 10%;
+    }
+    100% {
+      top: -100%;
+      display: none;
+    }
+  }
+
+  .animate-bounceYB {
+    animation: bounceYB 2s ease forwards;
+  }
+
+  @keyframes bounceYT {
+    0% {
+      bottom: -50%;
+    }
+    100% {
+      bottom:-180%;
+      display: none;
+    }
+  }
+
+  .animate-bounceYT {
+    animation: bounceYT 2s ease forwards;
+  }
+}

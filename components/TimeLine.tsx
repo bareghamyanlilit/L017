@@ -104,10 +104,10 @@ export default function Timeline() {
       {/* CONTENT */}
       <div
         ref={timelineRef}
-        className="relative z-10 FontArTarumianBarakU py-5 tracking-[25%]"
+        className="relative z-9 FontArTarumianBarakU py-5 tracking-[25%]"
       >
 
-        <div className=" relative z-20 mx-auto w-max text-center text-4xl  mb-20">
+        <div className=" relative z-9 mx-auto w-max text-center text-4xl  mb-20">
           <Image
             src="/svg (1).png"
             alt=""

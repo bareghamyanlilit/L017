@@ -50,4 +50,4 @@ export const text={
   txtEnd:"Խնդրում ենք նախապես տեղեկացնել \n Ձեր մասնակցության մասին \n մինչև Մայիսի 15-ը \n Սիրո՛վ սպասում ենք"
 }
 
-export const rsvp = 'https://script.google.com/macros/s/AKfycbyjze-p9X8YhZvLebhTg-PMy-I82xchTZ7seeUB_g5hD0f2iaWWNQ4uHdCIvqB5MEj8Eg/exec'
+export const rsvp = ''

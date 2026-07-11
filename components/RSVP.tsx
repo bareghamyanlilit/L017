@@ -153,12 +153,6 @@ export default function AttendanceGuests() {
 
   return (
     <div className="mx-auto w-full max-w-3xl px-6  ">
-      <motion.h1
-        {...anim}
-        className="text-3xl font-bold text-vrayi text-center mb-20 tracking-widest"
-      >
-        Հրավերի պատասխան
-      </motion.h1>
 
       {message.text && (
         <motion.div
@@ -198,7 +192,7 @@ export default function AttendanceGuests() {
               onClick={() => handleFamilySideChange("Հարսի կողմից")}
               className={`flex-1 p-3 rounded-lg border transition-all duration-200 ${
                 formData.familySide === "Հարսի կողմից"
-                  ? "bg-guyn text-[#FFFDFB] border-guyn"
+                  ? "bg-bg text-[#FFFDFB] border-guyn"
                   : " text-black "
               }`}
             >
@@ -210,7 +204,7 @@ export default function AttendanceGuests() {
               onClick={() => handleFamilySideChange("Փեսայի կողմից")}
               className={`flex-1 p-3 rounded-lg border transition-all duration-200 ${
                 formData.familySide === "Փեսայի կողմից"
-                  ? "bg-guyn text-[#FFFDFB] border-guyn"
+                  ? "bg-bg text-[#FFFDFB] border-guyn"
                   : " text-black "
               }`}
             >
@@ -227,7 +221,7 @@ export default function AttendanceGuests() {
               onClick={() => handleAttendingChange("Այո")}
               className={`flex-1 p-3 rounded-lg border transition-all duration-200 ${
                 formData.attending === "Այո"
-                  ? "bg-guyn text-[#FFFDFB] border-guyn"
+                  ? "bg-bg text-[#FFFDFB] border-guyn"
                   : " text-black "
               }`}
             >
@@ -239,7 +233,7 @@ export default function AttendanceGuests() {
               onClick={() => handleAttendingChange("Ոչ")}
               className={`flex-1 p-3 rounded-lg border transition-all duration-200 ${
                 formData.attending === "Ոչ"
-                  ? "bg-guyn text-[#FFFDFB] border-guyn"
+                  ? "bg-bg text-[#FFFDFB] border-guyn"
                   : " text-black "
               }`}
             >

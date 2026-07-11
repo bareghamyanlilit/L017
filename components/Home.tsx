@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Calendar } from "../components/calendar";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MusicPlayer } from "@/components/music";
 import { anim, text, txt2 } from "@/data/data";
@@ -10,27 +9,63 @@ import { Footer } from "./footer";
 import Image from "next/image";
 import AttendanceGuests from "./RSVP";
 import Timeline from "./TimeLine";
-import { Program } from "./Program";
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [openEnvelope, setOpenEnvelope] = useState(false);
+
+  useEffect(() => {
+    if (openEnvelope) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  }, [openEnvelope]);
 
   return (
-    <div className=" bg-guyn FontSHK_Dzeragir max-w-xl overflow-hidden m-auto">
+    <div
+      className={`${openEnvelope ? "" : "relative h-screen"} tracking-wide bg-guyn FontSHK_Dzeragir max-w-xl overflow-hidden m-auto  `}
+    >
+      <div
+        onClick={() => setOpenEnvelope(true)}
+        className={`${openEnvelope ? "animate-bounceYB" : ""} bg-center bg-cover z-51 w-[160vw] h-[160vw] rounded-4xl absolute left-1/2 top-[0%]  -translate-x-1/2 -translate-y-1/2 rotate-45  shadow-2xl `}
+        style={{ backgroundImage: `url("/envelope.png")` }}
+      ></div>
+      <div
+        onClick={() => setOpenEnvelope(true)}
+        className={`${openEnvelope ? "animate-bounceYT" : ""} rotate-225 bg-center bg-cover z-50 w-[160vw] h-[160vw] rounded-4xl absolute left-1/2 -bottom-[60%] -translate-x-1/2 -translate-y-1/2   `}
+        style={{ backgroundImage: `url("/envelope.png")` }}
+      ></div>
+      <img
+        src="/forenvelope.png"
+        alt="envelop"
+        onClick={() => setOpenEnvelope(true)}
+        className={`${openEnvelope ? "opacity-0" : ""} transition-all duration-100  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  cursor-pointer  md:w-50 md:h-50 z-60 w-30 h-30 `}
+      />
+
+      <p
+        onClick={() => setOpenEnvelope(true)}
+        className={`${openEnvelope ? "opacity-0" : ""} w-full text-center z-70 absolute left-1/2 top-1/5 -translate-x-1/2 -translate-y-1/2 text-[#a79b8d] text-3xl tracking-widest `}
+        >Դուք ստացել եք հրավիրատոմս</p>
+      <p
+        onClick={() => setOpenEnvelope(true)}
+        className={`${openEnvelope ? "opacity-0" : ""} z-70 absolute left-1/2 top-2/3 -translate-x-1/2 -translate-y-1/2 text-[#a79b8d] text-3xl tracking-widest `}
+        >Բացել</p>
+
 
       <div className={`max-w-xl m-auto`}>
         {/* music button */}
         <div>
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="fixed z-10 bg-[#4A4A4A70] right-5 top-6 rounded-[10px] w-16 h-16flex justify-center items-center"
+            className="fixed z-10  right-5 top-6 rounded-[10px] w-16 h-16flex justify-center items-center"
           >
             <Image
               src="/musIcon.png"
               alt="music"
               width={20}
               height={20}
-              className="w-full p-3 invert-100"
+              className="w-full p-3 "
             />
           </button>
           <MusicPlayer isPlaying={isPlaying} />
@@ -46,22 +81,23 @@ export default function Home() {
 
         </div>
 
-        <h1 className=" tracking-[8%]  text-center my-8 mb-13 text-5xl ">
+        <h1 className="  tracking-widest text-center mt-8 mb-15  text-5xl ">
           {text.firstwho}
         </h1>
 
+        <TimeBox />
         <Image
           src="/svg (1).png"
           alt=""
           width={1000}
           height={1000}
-          className="w-full px-15 mx-auto "
+          className="w-full px-15 mx-auto mt-15 "
         />
-        <div className="text-center FontSHK_Dzeragir tracking-[8%] px-5 pt-8">
-          <motion.h2 {...anim} className="mb-5 text-vrayi text-2xl">
+        <div className="text-center bg-bg mt-15 mb-8 text-white! FontSHK_Dzeragir tracking-[8%] px-5 pt-15 pb-10">
+          <motion.h2 {...anim} className="mb-5 text-2xl">
             {text.title1}
           </motion.h2>
-          <motion.p {...anim} className=" text-2xl text-vrayi">
+          <motion.p {...anim} className=" text-2xl">
             {text.descr1}
           </motion.p>
         </div>
@@ -72,16 +108,16 @@ export default function Home() {
         <section
           className="text-6xl text-[#fdf8f5] h-120 bg-center bg-no-repeat bg-cover mt-10"
           style={{
-            backgroundImage: "url('/img2.webp')",
+            backgroundImage: "url('/img2.png')",
           }}
         >
-          <div className="h-full p-8 backdrop-brightness-50 flex flex-col justify-center gap-30 text-center ">
+          <div className="h-full p-8  flex flex-col justify-center gap-30 text-center ">
             <motion.div
               {...anim}
               className="relative w-[70%] mx-auto flex flex-col gap-6"
             >
               <p className="text-5xl text-start ">SAVE </p>
-              <p className="text-center absolute text-[#e3e3e353] -z-1  w-full text-8xl">
+              <p className="text-center absolute text-hetevi   w-full text-8xl">
                 The
               </p>
               <p className="text-5xl text-end ">DATE</p>
@@ -103,68 +139,28 @@ export default function Home() {
             className="relative z-1  my-4 text-vrayi text-2xl"
           >
             {text.txtEnd}
-            <p className=" absolute -z-1 w-max text-4xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-hetevi ">
-              {text.txtEnd}
-            </p>
           </motion.h2>
         </section>
 
         {/* RSVP */}
+        
+      <motion.h1
+        {...anim}
+        className="text-3xl py-5 text-white bg-bg text-center mb-20 tracking-widest"
+      >
+        Հրավերի պատասխան
+      </motion.h1>
         <AttendanceGuests />
 
-        {/* <section className="text-center FontSHK_Dzeragir tracking-[8%] px-5 pt-5">
-          <TimeBox />
-        </section> */}
 
-        <div className="grid grid-cols-2 text-4xl font-bold gap-10 text-center my-20 text-vrayi ">
-          <div className="flex flex-col gap-15">
-            <motion.h3 {...anim} className="">MY</motion.h3>
-
-            <motion.div {...anim} className="">
-              <Image
-                src="/img5.jpg"
-                width={500}
-                height={500}
-                alt="img"
-                className="w-full object-cover "
-              />
-            </motion.div>
-
-            <motion.div {...anim} className="">
-              <Image
-                src="/img7.jpg"
-                width={500}
-                height={500}
-                alt="img"
-                className="w-full object-cover "
-              />
-            </motion.div>
-          </div>
-
-          <div className="flex flex-col gap-15">
-
-            <motion.div {...anim} className="">
-              <Image
-                src="/img6.jpg"
-                width={500}
-                height={500}
-                alt="img"
-                className="w-full object-cover "
-              />
-            </motion.div>
-
-            <motion.div {...anim} className="">
-              <Image
-                src="/img8.jpg"
-                width={500}
-                height={500}
-                alt="img"
-                className="w-full object-cover "
-              />
-            </motion.div>
-            <motion.h3 {...anim} className="">LOVE</motion.h3>
-          </div>
-        </div>
+        {/* 2 img */}
+        <section
+          className="text-6xl text-[#fdf8f5] h-120 bg-center bg-no-repeat bg-cover mt-10"
+          style={{
+            backgroundImage: "url('/img3.jpg')",
+          }}
+        >
+        </section>
         <Footer />
       </div>
     </div>
