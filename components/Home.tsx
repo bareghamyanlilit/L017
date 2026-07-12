@@ -46,7 +46,7 @@ export default function Home() {
       <p
         onClick={() => setOpenEnvelope(true)}
         className={`${openEnvelope ? "opacity-0" : ""} w-full text-center z-70 absolute left-1/2 top-1/5 -translate-x-1/2 -translate-y-1/2 text-[#a79b8d] text-3xl tracking-widest `}
-        >Դուք ստացել եք հրավիրատոմս</p>
+        >Դուք ստացել եք <br/> հրավիրատոմս</p>
       <p
         onClick={() => setOpenEnvelope(true)}
         className={`${openEnvelope ? "opacity-0" : ""} z-70 absolute left-1/2 top-2/3 -translate-x-1/2 -translate-y-1/2 text-[#a79b8d] text-3xl tracking-widest `}
